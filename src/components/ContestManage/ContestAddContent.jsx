@@ -71,7 +71,8 @@ const ContestAddContent = () => {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
-            const res = await postData('/subscription-plan', values);
+            const formData = new FormData();
+            const res = await postData('/contest', values);
             if (res.status_code === 200 || res.status_code === 201) {
                 toast(res.message);
                 navigate('/plan/list');
@@ -327,11 +328,20 @@ const ContestAddContent = () => {
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <label className="form-label">Winner Comment</label>
-                                        <Field as="select" name="winner_cmnt" className="form-select">
-                                            <option value="">Select Winner Comment</option>
-                                            <option value="1">Allow </option>
-                                            <option value="2">Don't Allow</option>
-                                        </Field>
+                                        <div className="form-check form-switch">
+                                            <Field
+                                                type="checkbox"
+                                                name="winner_cmnt"
+                                                className="form-check-input"
+                                                checked={values.winner_cmnt === "1"}
+                                                onChange={(e) =>
+                                                    setFieldValue("winner_cmnt", e.target.checked ? "1" : "2")
+                                                }
+                                            />
+                                            <label className="form-check-label">
+                                                {values.winner_cmnt === "1" ? "Enable Winner Comment" : "Disable Winner Comment"}
+                                            </label>
+                                        </div>
                                         <ErrorMessage
                                             name="winner_cmnt"
                                             component="div"
@@ -340,24 +350,20 @@ const ContestAddContent = () => {
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <label className="form-label">Result Declaration</label>
-                                        <Field as="select" name="result_declaration" className="form-select">
-                                            <option value="">Select Result Declaration</option>
-                                            <option value="1">Auto </option>
-                                            <option value="2">Manual</option>
-                                        </Field>
-                                        <ErrorMessage
-                                            name="result_declaration"
-                                            component="div"
-                                            className="text-danger fs-12 mt-1"
-                                        />
-                                    </div>
-                                    <div className="col-md-6 mb-3">
-                                        <label className="form-label">Result Declaration</label>
-                                        <Field as="select" name="result_declaration" className="form-select">
-                                            <option value="">Select Result Declaration</option>
-                                            <option value="1">Auto </option>
-                                            <option value="2">Manual</option>
-                                        </Field>
+                                          <div className="form-check form-switch">
+                                            <Field
+                                                type="checkbox"
+                                                name="result_declaration"
+                                                className="form-check-input"
+                                                checked={values.result_declaration === "1"}
+                                                onChange={(e) =>
+                                                    setFieldValue("result_declaration", e.target.checked ? "1" : "2")
+                                                }
+                                            />
+                                            <label className="form-check-label">
+                                                {values.result_declaration === "1" ? "Auto" : "Manual"}
+                                            </label>
+                                        </div>
                                         <ErrorMessage
                                             name="result_declaration"
                                             component="div"
@@ -366,11 +372,20 @@ const ContestAddContent = () => {
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <label className="form-label">Home Screen Result</label>
-                                        <Field as="select" name="home_screen_result_show" className="form-select">
-                                            <option value="">Select Home Screen Result</option>
-                                            <option value="1">Show</option>
-                                            <option value="2">Hide</option>
-                                        </Field>
+                                         <div className="form-check form-switch">
+                                            <Field
+                                                type="checkbox"
+                                                name="home_screen_result_show"
+                                                className="form-check-input"
+                                                checked={values.home_screen_result_show === "1"}
+                                                onChange={(e) =>
+                                                    setFieldValue("home_screen_result_show", e.target.checked ? "1" : "2")
+                                                }
+                                            />
+                                            <label className="form-check-label">
+                                                {values.home_screen_result_show === "1" ? "Show" : "Hide"}
+                                            </label>
+                                        </div>
                                         <ErrorMessage
                                             name="home_screen_result_show"
                                             component="div"
@@ -379,11 +394,20 @@ const ContestAddContent = () => {
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <label className="form-label">Sponsers Details</label>
-                                        <Field as="select" name="sponsers_detail" className="form-select">
-                                            <option value="">Select Sponsers Details</option>
-                                            <option value="1">Show</option>
-                                            <option value="2">Hide</option>
-                                        </Field>
+                                          <div className="form-check form-switch">
+                                            <Field
+                                                type="checkbox"
+                                                name="sponsers_detail"
+                                                className="form-check-input"
+                                                checked={values.sponsers_detail === "1"}
+                                                onChange={(e) =>
+                                                    setFieldValue("sponsers_detail", e.target.checked ? "1" : "2")
+                                                }
+                                            />
+                                            <label className="form-check-label">
+                                                {values.sponsers_detail === "1" ? "Show" : "Hide"}
+                                            </label>
+                                        </div>
                                         <ErrorMessage
                                             name="sponsers_detail"
                                             component="div"
